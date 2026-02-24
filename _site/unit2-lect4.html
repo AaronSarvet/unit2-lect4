@@ -9,7 +9,7 @@
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.27">
 
-  <title>Inverse Probability Weighting</title>
+  <title>Lecture3 – Inverse Probability Weighting</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -373,12 +373,12 @@ P(A=a \mid L=l)&gt;0
 <span id="cb2-5"><a></a><span class="co">#Truth</span></span>
 <span id="cb2-6"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9991558</code></pre>
+<pre><code>[1] 1.000743</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co">#Horvitz-Thompson Estimator</span></span>
 <span id="cb4-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9981318</code></pre>
+<pre><code>[1] 1.001766</code></pre>
 </div>
 </div>
 </section>
@@ -403,17 +403,17 @@ P(A=a \mid L=l)&gt;0
 <span id="cb6-5"><a></a><span class="co">#Truth</span></span>
 <span id="cb6-6"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9991558</code></pre>
+<pre><code>[1] 1.000743</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co">#Horvitz-Thompson Estimator</span></span>
 <span id="cb8-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9981318</code></pre>
+<pre><code>[1] 1.001766</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co">#Hajek Estimator</span></span>
 <span id="cb10-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)<span class="sc">/</span><span class="fu">mean</span>(df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9987243</code></pre>
+<pre><code>[1] 1.001871</code></pre>
 </div>
 </div>
 </section>
@@ -463,17 +463,17 @@ P(A=a \mid L=l)&gt;0
 <span id="cb12-6"><a></a><span class="co">#Truth</span></span>
 <span id="cb12-7"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9991558</code></pre>
+<pre><code>[1] 1.000743</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co">#Horvitz-Thompson Estimator</span></span>
 <span id="cb14-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9990111</code></pre>
+<pre><code>[1] 1.001506</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co">#Hajek Estimator</span></span>
 <span id="cb16-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)<span class="sc">/</span><span class="fu">mean</span>(df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9990011</code></pre>
+<pre><code>[1] 1.001505</code></pre>
 </div>
 </div>
 </section>
