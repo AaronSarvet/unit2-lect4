@@ -25,14 +25,14 @@
     "href": "unit2-lect4.html#review-2",
     "title": "Inverse Probability Weighting",
     "section": "Review",
-    "text": "Review\n\n(Conditional) positivity for treatment \\(A\\) with respect to an outcome \\(Y\\) is the following property: \\[\n\\begin{aligned}\nP(A=a \\mid L=l)&gt;0\n\\end{aligned}\n\\]"
+    "text": "Review\n\n(Conditional) positivity for treatment \\(A\\) with respect to an outcome \\(Y\\) is the following property: \\[\\begin{align}\nP(A=a \\mid L=l)&gt;0\n\\end{align}\n\\] for all \\(a\\), and for all \\(l\\) such that \\(P(L=l)&gt;0\\)"
   },
   {
     "objectID": "unit2-lect4.html#review-3",
     "href": "unit2-lect4.html#review-3",
     "title": "Inverse Probability Weighting",
     "section": "Review",
-    "text": "Review\nAssumptions hold by design in an ideal randomized controlled trial. Outside of a trial they can fail:\n\nConsistency, \\(Y^a \\neq Y\\) when \\(A=a\\): e.g., LDL cholesterol as exposure\nExchangeability, \\(Y^a \\not\\perp A \\mid L\\): unmeasured confounding, i.e., common causes of treatment and the outcome\nPositivity, \\(P(A=a \\mid L=l)=0\\): No individuals with moderate baseline depression are prescribed Ketamine treatment (comparing Ketamine vs. SSRI)."
+    "text": "Review\nAssumptions hold by design in an ideal randomized controlled trial. Outside of a trial they can fail:\n\nConsistency, \\(Y^a \\neq Y\\) when \\(A=a\\)\n\ne.g., LDL cholesterol as exposure\n\nExchangeability, \\(Y^a \\not\\perp A \\mid L\\)\n\nunmeasured confounding, i.e., common causes of treatment and the outcome\n\nPositivity, \\(P(A=a \\mid L=l)=0\\)\n\nNo individuals with moderate baseline depression are prescribed Ketamine treatment (comparing Ketamine vs. SSRI)."
   },
   {
     "objectID": "unit2-lect4.html#review-4",
@@ -46,7 +46,7 @@
     "href": "unit2-lect4.html#review-5",
     "title": "Inverse Probability Weighting",
     "section": "Review",
-    "text": "Review\nUnder consistency, exchangeability, positivity, AND a conditional mean outcome model, e.g.:\n\n\\(\\mathbb{E}[Y \\mid A=a, L=l] = \\beta_0 + \\beta_1a + \\beta_2l+\\beta_3al\\)\n\\(logit(P(Y=1 \\mid A=a, L=l)) = \\theta_0 + \\theta_1a + \\theta_2l+\\theta_3al\\)\n\n\\[\\begin{align*}\n   \\mathbb{E}[Y^a]\n= &\\mathbb{E}\\Big[\\mathbb{E}[Y \\mid A=a, L]\\Big] \\\\\n= &\\mathbb{E}\\Big[\\beta_0 + \\beta_1a + \\beta_2L+\\beta_3aL\\Big]\n\\end{align*}\\]"
+    "text": "Review\nUnder consistency, exchangeability, positivity, AND a conditional mean outcome model, e.g.:\n\n\\(\\mathbb{E}[Y \\mid A=a, L=l] = \\beta_0 + \\beta_1a + \\beta_2l+\\beta_3al\\)\n\\(logit(P(Y=1 \\mid A=a, L=l)) = \\theta_0 + \\theta_1a + \\theta_2l+\\theta_3al\\)\n\n\n\\[\\begin{align*}\n   \\mathbb{E}[Y^a]\n= &\\mathbb{E}\\Big[\\mathbb{E}[Y \\mid A=a, L]\\Big] \\\\\n= &\\mathbb{E}\\Big[\\beta_0 + \\beta_1a + \\beta_2L+\\beta_3aL\\Big]\n\\end{align*}\\]"
   },
   {
     "objectID": "unit2-lect4.html#review-6",
@@ -60,90 +60,237 @@
     "href": "unit2-lect4.html#parametric-g-formula-estimator",
     "title": "Inverse Probability Weighting",
     "section": "Parametric g-formula estimator",
-    "text": "Parametric g-formula estimator\nParametric g-formula was historically the first estimator proposed for the g-formula parameter. But here is a puzzle: suppose we have data from a special conditionally randomized trial, where we assign patients treatment randomly conditional on a value of a continuous time-varying covariate, for example according to some function \\(\\pi(l)\\). Suppose further that we no nothing a priori about \\(\\mathbb{E}[Y \\mid A=a, L=l]\\), e.g., we have no parametric model for \\(\\mathbb{E}[Y \\mid A=a, L=l]\\). As such, we cannot consistently estimate \\(\\mathbb{E}[Y \\mid A=a, L=l]\\) or apparently the ATE…This seems strange…"
+    "text": "Parametric g-formula estimator\n\nParametric g-formula was historically the first estimator proposed for the g-formula parameter.\nBut here is a puzzle\n\nsuppose we have data from a special conditionally randomized trial\ntherein, we assign patients treatment randomly conditional on a value of a continuous covariate, for example according to some function \\(\\pi(l)\\).\nSuppose further that we no nothing a priori about \\(\\mathbb{E}[Y \\mid A=a, L=l]\\), e.g., we have no parametric model for \\(\\mathbb{E}[Y \\mid A=a, L=l]\\).\nAs such, we cannot consistently estimate \\(\\mathbb{E}[Y \\mid A=a, L=l]\\) or apparently the ATE…This seems strange…"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting",
     "href": "unit2-lect4.html#inverse-probability-weighting",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\nHow can we use the propensities? Let’s manipulate the g-formula…\n\\[\\begin{align*}\n= & \\mathbb{E}\\Big[\\mathbb{E}[Y \\mid A=a, L]\\Big] \\\\\n= & \\int_l\\int_yyf(y \\mid a, l) f(l) \\\\\n=& \\int_l\\int_y\\int_{a'}y\\frac{I(a'=a)}{f(a' \\mid l)}f(y \\mid a', l) f(a' \\mid l)f(l) \\\\\n=& \\mathbb{E}\\Big[Y \\frac{I(A=a)}{P(A=a \\mid L)}\\Big]\n  \\end{align*}\\]"
+    "text": "Inverse probability weighting\nHow can we use the propensities? Let’s manipulate the g-formula…\n\n\\[\\begin{align*}\n= & \\mathbb{E}\\Big[\\mathbb{E}[Y \\mid A=a, L]\\Big] \\\\\n= & \\int_l\\int_yyf(y \\mid a, l) f(l) \\\\\n=& \\int_l\\int_y\\int_{a'}y\\frac{I(a'=a)}{f(a' \\mid l)}f(y \\mid a', l) f(a' \\mid l)f(l)\\end{align*}\\]\n\n\n\\[= \\mathbb{E}\\Big[Y \\frac{I(A=a)}{P(A=a \\mid L)}\\Big]\n  \\]"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-1",
     "href": "unit2-lect4.html#inverse-probability-weighting-1",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\nSo, under consistency, exchangeability, positivity…\n\\[\\begin{align*}\n\\mathbb{E}[Y^a] = & \\mathbb{E}\\Big[Y \\frac{I(A=a)}{P(A=a \\mid L)}\\Big]= & \\mathbb{E}\\Big[Y \\frac{1}{P(A=a \\mid L)} \\mid A=a \\Big]\n  \\end{align*}\\]"
+    "text": "Inverse probability weighting\nSo, under consistency, exchangeability, positivity…\n\\[\\begin{align*}\n\\mathbb{E}[Y^a] = & \\mathbb{E}\\Big[Y \\frac{I(A=a)}{P(A=a \\mid L)}\\Big]=  \\mathbb{E}\\Big[Y \\frac{1}{P(A=a \\mid L)} \\mid A=a \\Big]\n  \\end{align*}\\]"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-2",
     "href": "unit2-lect4.html#inverse-probability-weighting-2",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\nReturning to our motivating example:\n\n“…we assign patients treatment randomly conditional on a value of a continuous time-varying covariate, for example according to some function \\(\\pi(l)\\)…”\n\\[\\begin{align*}\n\\mathbb{E}[Y^{a=1}] = & \\mathbb{E}\\Big[Y \\frac{I(A=1)}{P(A=1 \\mid L)}\\Big] \\\\\n= & \\mathbb{E}\\Big[Y \\frac{I(A=1)}{\\pi(L)}\\Big]\n\\end{align*}\\]"
+    "text": "Inverse probability weighting\nReturning to our motivating example:\n\n“…we assign patients treatment randomly conditional on a value of a continuous covariate, for example according to some function \\(\\pi(l)\\)…”\n\\[\\begin{align*}\n\\mathbb{E}[Y^{a=1}] = & \\mathbb{E}\\Big[Y \\frac{I(A=1)}{P(A=1 \\mid L)}\\Big] \\\\\n= & \\mathbb{E}\\Big[Y \\frac{I(A=1)}{\\pi(L)}\\Big]\n\\end{align*}\\]"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-3",
     "href": "unit2-lect4.html#inverse-probability-weighting-3",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\nUnder consistency, exchangeability, positivity, AND a knowledge that \\(P(A=1 \\mid L=l) = \\pi(l)\\):\n\\[\\begin{align*}\n  = & \\frac{1}{n}\\sum\\limits_{i=1}^nY_i\\frac{I(A_i=1)}{\\pi(L_i)} \\\\\n  = & \\frac{1}{n}\\sum\\limits_{i=1}^nY_iW_i\n\\end{align*}\\]\nis a consistent estimator of \\(\\mathbb{E}[Y^{a=1}]\\), where:\n\\[W_i := \\frac{I(A_i=1)}{\\pi(L_i)}.\\]\n\nThis is called the Horvitz-Thompson estimator."
+    "text": "Inverse probability weighting\nUnder consistency, exchangeability, positivity, AND a knowledge that \\(P(A=1 \\mid L=l) = \\pi(l)\\):\n\n\\[\\begin{align*}\n  = & \\frac{1}{n}\\sum\\limits_{i=1}^nY_i\\frac{I(A_i=1)}{\\pi(L_i)} \\\\\n  = & \\frac{1}{n}\\sum\\limits_{i=1}^nY_iW_i\n\\end{align*}\\]\nis a consistent estimator of \\(\\mathbb{E}[Y^{a=1}]\\),"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-4",
     "href": "unit2-lect4.html#inverse-probability-weighting-4",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\n\nexpit &lt;- function(x) { exp(x) / (1 + exp(x)) }\nn&lt;-1000000\nbeta&lt;-c(-1, 1, 0.5)\neta&lt;-c(0, 0.2)\n\nU_L &lt;- runif(n, 0, 1) \nU_A &lt;- runif(n, 0, 1) \nU_Y1 &lt;- runif(n, 0, 1)\nU_Y0 &lt;- runif(n, 0, 1)\n\nL&lt;-qnorm(U_L, 2, 1)\nA  &lt;- qbinom(U_A, 1, expit(eta[1] + eta[2]*L))\nY1 &lt;- qnorm(U_Y1, beta[1] + beta[2]*1 + beta[3]*L, 1)\nY0 &lt;- qnorm(U_Y0, beta[1] + beta[2]*0 + beta[3]*L, 1)\nY  &lt;- Y1*A + Y0*(1-A)\n\n df1&lt;-data.frame(L=L, A=A, Y1=Y1, Y0=Y0, Y=Y)"
+    "text": "Inverse probability weighting\nUnder consistency, exchangeability, positivity, AND a knowledge that \\(P(A=1 \\mid L=l) = \\pi(l)\\):\n\nI.e., \\[ \\frac{1}{n}\\sum\\limits_{i=1}^nY_iW_i \\to \\mathbb{E}[Y^{a=1}]\\] where:\n\\[W_i := \\frac{I(A_i=1)}{\\pi(L_i)}\\]\n\n\nThis is called the Horvitz-Thompson estimator."
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-5",
     "href": "unit2-lect4.html#inverse-probability-weighting-5",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\ndf1$pi&lt;-expit(eta[1] + eta[2]*df1$L)\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 0.999894\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.001922"
+    "text": "Inverse probability weighting\n\nexpit &lt;- function(x) { exp(x) / (1 + exp(x)) }\nn&lt;-1000\nbeta&lt;-c(-1, 1, 0.5)\neta&lt;-c(0, 0.2)\n\nU_L &lt;- runif(n, 0, 1) \nU_A &lt;- runif(n, 0, 1) \nU_Y1 &lt;- runif(n, 0, 1)\nU_Y0 &lt;- runif(n, 0, 1)\n\nL&lt;-qnorm(U_L, 2, 1)\nA  &lt;- qbinom(U_A, 1, expit(eta[1] + eta[2]*L))\nY1 &lt;- qnorm(U_Y1, beta[1] + beta[2]*1 + beta[3]*L, 1)\nY0 &lt;- qnorm(U_Y0, beta[1] + beta[2]*0 + beta[3]*L, 1)\nY  &lt;- Y1*A + Y0*(1-A)\n\n df1&lt;-data.frame(L=L, A=A, Y1=Y1, Y0=Y0, Y=Y)"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-6",
     "href": "unit2-lect4.html#inverse-probability-weighting-6",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\nUnder consistency, exchangeability, positivity, AND a knowledge that \\(P(A=1 \\mid L=l) = \\pi(l)\\):\n\\[\\begin{align*}\n  = & \\frac{\\frac{1}{n}\\sum\\limits_{i=1}^nY_i\\frac{I(A_i=1)}{\\pi(L_i)}}{\\frac{1}{n}\\sum\\limits_{i=1}^n\\frac{I(A_i=1)}{\\pi(L_i)}}\n\\end{align*}\\]\nis a consistent estimator estimator of \\(\\mathbb{E}[Y^{a=1}]\\).\n\nThis is called the Hajek estimator."
+    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\ndf1$pi&lt;-expit(eta[1] + eta[2]*df1$L)\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 0.9832661\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.007158"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-7",
     "href": "unit2-lect4.html#inverse-probability-weighting-7",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\ndf1$pi&lt;-expit(eta[1] + eta[2]*df1$L)\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 0.999894\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.001922\n\n#Hajek Estimator\nmean(df1$Y*df1$W)/mean(df1$W)\n\n[1] 0.999832"
+    "text": "Inverse probability weighting\nUnder consistency, exchangeability, positivity, AND a knowledge that \\(P(A=1 \\mid L=l) = \\pi(l)\\):\n\\[\\begin{align*}\n  = & \\frac{\\frac{1}{n}\\sum\\limits_{i=1}^nY_i\\frac{I(A_i=1)}{\\pi(L_i)}}{\\frac{1}{n}\\sum\\limits_{i=1}^n\\frac{I(A_i=1)}{\\pi(L_i)}}\n\\end{align*}\\]\nis a consistent estimator estimator of \\(\\mathbb{E}[Y^{a=1}]\\).\n\nThis is called the Hajek estimator."
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-8",
     "href": "unit2-lect4.html#inverse-probability-weighting-8",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\nWhat if we do not know the function, \\(\\pi(l)\\), for example, if we do not have access to data from a conditionally randomized clinical trial, but rather have observational data, which we assume can be viewed as such a trial run by nature?"
+    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\ndf1$pi&lt;-expit(eta[1] + eta[2]*df1$L)\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 0.9832661\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.007158\n\n#Hajek Estimator\nmean(df1$Y*df1$W)/mean(df1$W)\n\n[1] 0.9889273"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-9",
     "href": "unit2-lect4.html#inverse-probability-weighting-9",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\nUnder consistency, exchangeability, positivity, AND a conditional treatment model, e.g.:\n\n\\(logit(P(A=1 \\mid L=l)) = \\eta_0 + \\eta_1l\\)\n\n\\[\\begin{align*}\n   \\mathbb{E}[Y^{a=1}]\n= &\\mathbb{E}\\Big[Y \\frac{I(A=1)}{P(A=1 \\mid L)}\\Big] \\\\\n= &\\mathbb{E}\\Big[Y \\frac{I(A=1)}{expit(\\eta_0 + \\eta_1L)}\\Big]\n\\end{align*}\\]"
+    "text": "Inverse probability weighting\nWhat if we do not know the function, \\(\\pi(l)\\), for example, if we do not have access to data from a conditionally randomized clinical trial, but rather have observational data, which we assume can be viewed as such a trial run by nature?"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-10",
     "href": "unit2-lect4.html#inverse-probability-weighting-10",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\nUnder consistency, exchangeability, positivity, AND a conditional treatment model,\n\\[\\begin{align*}\n= & \\frac{1}{n}\\sum\\limits_{i=1}^n\\Big\\{Y_i\\frac{I(A_i=1)}{expit(\\hat\\eta_0 + \\hat\\eta_1L_i)}\\Big\\}\n\\end{align*}\\]\nis a consistent estimator of \\(\\mathbb{E}[Y^{a=1}]\\)."
+    "text": "Inverse probability weighting\nUnder consistency, exchangeability, positivity, AND a conditional treatment model, e.g.:\n\n\\(logit(P(A=1 \\mid L=l)) = \\eta_0 + \\eta_1l\\)\n\n\n\\[\\begin{align*}\n   \\mathbb{E}[Y^{a=1}]\n= &\\mathbb{E}\\Big[Y \\frac{I(A=1)}{P(A=1 \\mid L)}\\Big] \\\\\n= &\\mathbb{E}\\Big[Y \\frac{I(A=1)}{expit(\\eta_0 + \\eta_1L)}\\Big]\n\\end{align*}\\]"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-11",
     "href": "unit2-lect4.html#inverse-probability-weighting-11",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\nfit&lt;-glm(A~L, data=df1, family=binomial(link=logit))\ndf1$pi&lt;-predict(fit, df1, type=\"response\")\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 0.999894\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 0.9998143\n\n#Hajek Estimator\nmean(df1$Y*df1$W)/mean(df1$W)\n\n[1] 0.9998267"
+    "text": "Inverse probability weighting\nUnder consistency, exchangeability, positivity, AND a conditional treatment model,\n\\[\\begin{align*}\n= & \\frac{1}{n}\\sum\\limits_{i=1}^n\\Big\\{Y_i\\frac{I(A_i=1)}{expit(\\hat\\eta_0 + \\hat\\eta_1L_i)}\\Big\\}\n\\end{align*}\\]\nis a consistent estimator of \\(\\mathbb{E}[Y^{a=1}]\\)."
+  },
+  {
+    "objectID": "unit2-lect4.html#inverse-probability-weighting-12",
+    "href": "unit2-lect4.html#inverse-probability-weighting-12",
+    "title": "Inverse Probability Weighting",
+    "section": "Inverse probability weighting",
+    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\nfit&lt;-glm(A~L, data=df1, family=binomial(link=logit))\ndf1$pi&lt;-predict(fit, df1, type=\"response\")\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 0.9832661\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 0.9918352\n\n#Hajek Estimator\nmean(df1$Y*df1$W)/mean(df1$W)\n\n[1] 0.9920483"
+  },
+  {
+    "objectID": "unit2-lect4.html#inverse-probability-weighting-13",
+    "href": "unit2-lect4.html#inverse-probability-weighting-13",
+    "title": "Inverse Probability Weighting",
+    "section": "Inverse probability weighting",
+    "text": "Inverse probability weighting\nReturning to our motivating example:\n\n“…we assign patients treatment randomly conditional on a value of a continuous covariate, for example according to some function \\(\\pi(l)\\)…”\nSuppose \\(\\pi(l) = expit(\\eta_0 + \\eta_1L)\\).\nConsider:\n\n\\(W^{true} = \\frac{I(A=1)}{expit(\\eta_0 + \\eta_1L)}\\)\n\\(W^{est} = \\frac{I(A=1)}{expit(\\hat{\\eta}_0 + \\hat{\\eta}_1L)}\\)\n\nWhich weights should we use?"
+  },
+  {
+    "objectID": "unit2-lect4.html#evaluating-the-positivity-assumption",
+    "href": "unit2-lect4.html#evaluating-the-positivity-assumption",
+    "title": "Inverse Probability Weighting",
+    "section": "Evaluating the positivity assumption",
+    "text": "Evaluating the positivity assumption\n\n(Conditional) positivity for treatment \\(A\\) with respect to an outcome \\(Y\\) is the following property: \\[\\begin{aligned}\nP(A=a \\mid L=l)&gt;0\n\\end{aligned}\\] for all \\(a\\), and for all \\(l\\) such that \\(P(L=l)&gt;0\\)"
+  },
+  {
+    "objectID": "unit2-lect4.html#evaluating-the-positivity-assumption-1",
+    "href": "unit2-lect4.html#evaluating-the-positivity-assumption-1",
+    "title": "Inverse Probability Weighting",
+    "section": "Evaluating the positivity assumption",
+    "text": "Evaluating the positivity assumption\nEquivalent definitions of (Conditional) Positivity:\n\nLetting \\(\\pi(L) := P(A=1 \\mid L)\\)…\n\n\\(P(0&lt;\\pi(L)&lt;1) = 1\\)\n\nInterpretation: the propensity is never 0 or 1 for any level of covariates that can occur in the population.\n\n\\(f(\\pi(L) \\mid A=1)&gt;0 \\iff f(\\pi(L) \\mid A=0)&gt;0\\)\nInterpretation: There must be “overlap” in the propensity score distributions between treated and control populations."
+  },
+  {
+    "objectID": "unit2-lect4.html#evaluating-the-positivity-assumption-2",
+    "href": "unit2-lect4.html#evaluating-the-positivity-assumption-2",
+    "title": "Inverse Probability Weighting",
+    "section": "Evaluating the positivity assumption",
+    "text": "Evaluating the positivity assumption\nAssessing “overlap”, \\(f(\\pi(L) \\mid A=1)&gt;0 \\iff f(\\pi(L) \\mid A=0)&gt;0\\)"
+  },
+  {
+    "objectID": "unit2-lect4.html#evaluating-the-positivity-assumption-3",
+    "href": "unit2-lect4.html#evaluating-the-positivity-assumption-3",
+    "title": "Inverse Probability Weighting",
+    "section": "Evaluating the positivity assumption",
+    "text": "Evaluating the positivity assumption\nChanging the treatment mechanism…\n\nn &lt;- 10000\nbeta &lt;- c(-1, 1, 0.5)\n\neta2 &lt;- c(0, 4)\n\nU_L &lt;- runif(n, 0, 1)\nU_A &lt;- runif(n, 0, 1)\nU_Y1 &lt;- runif(n, 0, 1)\nU_Y0 &lt;- runif(n, 0, 1)\n\nL  &lt;- qnorm(U_L, 0, 1)\n\nA2 &lt;- qbinom(U_A, 1, expit(eta2[1] + eta2[2]*L))\n\nY1 &lt;- qnorm(U_Y1, beta[1] + beta[2]*1 + beta[3]*L, 1)\nY0 &lt;- qnorm(U_Y0, beta[1] + beta[2]*0 + beta[3]*L, 1)\n\nY2 &lt;- Y1*A2 + Y0*(1-A2)"
+  },
+  {
+    "objectID": "unit2-lect4.html#evaluating-the-positivity-assumption-4",
+    "href": "unit2-lect4.html#evaluating-the-positivity-assumption-4",
+    "title": "Inverse Probability Weighting",
+    "section": "Evaluating the positivity assumption",
+    "text": "Evaluating the positivity assumption\nChanging the treatment mechanism…\n\ndf2 &lt;- data.frame(L=L, A=A2, Y1=Y1, Y0=Y0, Y=Y2)\n\nfit2&lt;-glm(A~L, data=df2, family=binomial(link=logit))\ndf2$pi&lt;-predict(fit2, df2, type=\"response\")"
+  },
+  {
+    "objectID": "unit2-lect4.html#evaluating-the-positivity-assumption-5",
+    "href": "unit2-lect4.html#evaluating-the-positivity-assumption-5",
+    "title": "Inverse Probability Weighting",
+    "section": "Evaluating the positivity assumption",
+    "text": "Evaluating the positivity assumption\nAssessing “overlap”, \\(f(\\pi(L) \\mid A=1)&gt;0 \\iff f(\\pi(L) \\mid A=0)&gt;0\\)"
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-positivity-violations",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-positivity-violations",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are positivity violations?",
+    "text": "What to do when there are positivity violations?\nWhen \\(P(A=a \\mid L=l)=0\\) for some levels \\(l\\), the IPW estimator\n\\[\\sum\\limits_{i=1}^nY_i\\frac{I(A_i=a)}{\\hat{P}(A=a \\mid L_i)}\\] is not consistent for \\(\\mathbb{E}[Y^a]\\).\nRather it is consistent for \\[\\mathbb{E}\\Big[Y^a \\mid L \\in \\{l \\ s.t. P(A=a \\mid L=l)&gt;0\\}\\Big]\\]"
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-positivity-violations-1",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-positivity-violations-1",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are positivity violations?",
+    "text": "What to do when there are positivity violations?\nAs such: \\[\\Bigg\\{\\sum\\limits_{i=1}^nY_i\\frac{I(A_i=1)}{\\hat{P}(A=1 \\mid L_i)}\\Bigg\\} - \\Bigg\\{\\sum\\limits_{i=1}^nY_i\\frac{I(A_i=0)}{\\hat{P}(A=0 \\mid L_i)}\\Bigg\\}\\] is not consistent for \\(\\mathbb{E}[Y^{a=1}] - \\mathbb{E}[Y^{a=0}]\\)."
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-positivity-violations-2",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-positivity-violations-2",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are positivity violations?",
+    "text": "What to do when there are positivity violations?\nInstead it is consistent for \\[\\begin{align} & \\mathbb{E}\\Big[Y^{a=1} \\mid L \\in \\{l \\ s.t. P(A=1 \\mid L=l)&gt;0\\}\\Big] \\\\ - & \\mathbb{E}\\Big[Y^{a=0} \\mid L \\in \\{l \\ s.t. P(A=0 \\mid L=l)&gt;0\\}\\Big]\\end{align}\\]\nThe subpopulations are different, so it is not even a causal effect of any kind!"
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are (apparent) positivity violations?",
+    "text": "What to do when there are (apparent) positivity violations?\nOption 1: the parametric g-formula\n\nRecall: Positivity ensures the g-formula is well-defined, e.g., \\[\\mathbb{E}\\Big[\\mathbb{E}[Y \\mid A=1, L]\\Big]\\]\nSuppose \\(P(A=1 \\mid L=1)=0\\), binary \\(L\\).\n\\[\\begin{align}&\\mathbb{E}\\Big[\\mathbb{E}[Y \\mid A=1, L]\\Big] \\\\ = & \\mathbb{E}[Y \\mid A=1, L=1]P(L=1) + \\mathbb{E}[Y \\mid A=1, L=0]P(L=0)\\end{align}\\]\n\\(\\mathbb{E}[Y \\mid A=1, L=1]\\) is the problematic term."
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-1",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-1",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are (apparent) positivity violations?",
+    "text": "What to do when there are (apparent) positivity violations?\nOption 1: the parametric g-formula\n\nSuppose we assume \\(\\mathbb{E}[Y \\mid A, L] = \\beta_0 + \\beta_1A + \\beta_2L\\).\nConsider: \\[\\begin{align} \\mathbb{E}[Y \\mid A=1, L=1] = \\beta_0 + \\beta_1 + \\beta_2\n\\end{align}\\]\n\\(\\beta_0 = \\mathbb{E}[Y \\mid A=0, L=0]\\)\n\\(\\beta_1 = \\mathbb{E}[Y \\mid A=1, L=l] - \\mathbb{E}[Y \\mid A=0, L=l]\\)\n\\(\\beta_2 = \\mathbb{E}[Y \\mid A=a, L=1] - \\mathbb{E}[Y \\mid A=a, L=0]\\)"
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-2",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-2",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are (apparent) positivity violations?",
+    "text": "What to do when there are (apparent) positivity violations?\nOption 1: the parametric g-formula\n\nSuppose we assume \\(\\mathbb{E}[Y \\mid A, L] = \\beta_0 + \\beta_1A + \\beta_2L\\).\nConsider: \\[\\begin{align} \\mathbb{E}[Y \\mid A=1, L=1] = \\beta_0 + \\beta_1 + \\beta_2\n\\end{align}\\]\n\\(\\beta_0 = \\mathbb{E}[Y \\mid A=0, L=0]\\)\n\\(\\beta_1 = \\mathbb{E}[Y \\mid A=1, L=0] - \\mathbb{E}[Y \\mid A=0, L=0]\\)\n\\(\\beta_2 = \\mathbb{E}[Y \\mid A=0, L=1] - \\mathbb{E}[Y \\mid A=0, L=0]\\)\nWarning: We rely on potential wrong modelling assumptions."
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-3",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-3",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are (apparent) positivity violations?",
+    "text": "What to do when there are (apparent) positivity violations?\nOption 2: Change the estimand\n\nOriginally we wanted \\(\\mathbb{E}[Y^{a=1}] - \\mathbb{E}[Y^{a=0}]\\).\n\nThis requires \\(P(A=a \\mid L=l)&gt;1\\) for all \\(l\\) with positive probability in the target population.\n\nSuppose instead we wanted \\(\\mathbb{E}[Y^{a=1} \\mid L=l'] - \\mathbb{E}[Y^{a=0}\\mid L=l']\\).\n\n\\(\\mathbb{E}[Y^{a} \\mid L=l'] = \\mathbb{E}[Y \\mid A=a, L=l']\\)\nThis only requires \\(P(A=a \\mid L=l')&gt;1\\)."
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-4",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-4",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are (apparent) positivity violations?",
+    "text": "What to do when there are (apparent) positivity violations?\nOption 2: Change the estimand\n\nSuppose instead we wanted a \\(\\mathbb{E}[Y^{a=1} \\mid X=x] - \\mathbb{E}[Y^{a=0}\\mid X=x]\\).\n\n\\(\\mathbb{E}[Y^{a} \\mid X=x] = \\mathbb{E}\\Big[\\mathbb{E}[Y \\mid A=a, L] \\Big | X=x\\Big]\\)\nThis only requires \\(P(A=a \\mid L=l)&gt;1\\) for all \\(l\\) with positive probability in the subpopulation with \\(X=x\\)."
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-5",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-5",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are (apparent) positivity violations?",
+    "text": "What to do when there are (apparent) positivity violations?\nOption 2: Change the estimand\n\nExclude the population you know has probability \\(0\\) of receiving one of the treatment levels, e.g.,\n\n\\(L=(L_1, L_2)\\), exclude people with \\(L_2=0\\), moderate depression (ketamine vs. SSRI)\n\\(\\mathbb{E}[Y^{a} \\mid L_2\\neq 0] = \\mathbb{E}\\Big[\\mathbb{E}[Y \\mid A=a, L_1, L_2] \\Big |  L_2\\neq 0\\Big]\\)"
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-6",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-6",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are (apparent) positivity violations?",
+    "text": "What to do when there are (apparent) positivity violations?\nOption 2: Change the estimand\n\nRestrict to the “overlap population”\n\nOnly levels of \\(L\\) such that \\(\\epsilon&lt;P(A=1 \\mid L=l)&lt;1-\\epsilon\\)\n\\(\\mathbb{E}\\Big[Y^{a} \\Big |  L \\in \\{l \\ s.t. \\epsilon&lt;P(A=a \\mid L=l)&lt;1-\\epsilon\\}\\Big]\\) for \\(0&lt;\\epsilon&gt;1\\)."
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-7",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-7",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are (apparent) positivity violations?",
+    "text": "What to do when there are (apparent) positivity violations?"
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-8",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-8",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are (apparent) positivity violations?",
+    "text": "What to do when there are (apparent) positivity violations?"
+  },
+  {
+    "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-9",
+    "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-9",
+    "title": "Inverse Probability Weighting",
+    "section": "What to do when there are (apparent) positivity violations?",
+    "text": "What to do when there are (apparent) positivity violations?\nWarning: we need to be really careful when we change the estimand! Are we really interested in this subpopulation? What is the policy relavence? Beware of easy fixes - there is no free lunch…"
   }
 ]

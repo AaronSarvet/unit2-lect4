@@ -239,20 +239,28 @@ Y^a \perp A \mid L
 <section id="review-2" class="slide level2">
 <h2>Review</h2>
 <div class="definition" data-title="(Conditional) Positivity">
-<p>(Conditional) positivity for treatment <span class="math inline">\(A\)</span> with respect to an outcome <span class="math inline">\(Y\)</span> is the following property: <span class="math display">\[
-\begin{aligned}
+<p>(Conditional) positivity for treatment <span class="math inline">\(A\)</span> with respect to an outcome <span class="math inline">\(Y\)</span> is the following property: <span class="math display">\[\begin{align}
 P(A=a \mid L=l)&gt;0
-\end{aligned}
-\]</span></p>
+\end{align}
+\]</span> for all <span class="math inline">\(a\)</span>, and for all <span class="math inline">\(l\)</span> such that <span class="math inline">\(P(L=l)&gt;0\)</span></p>
 </div>
 </section>
 <section id="review-3" class="slide level2">
 <h2>Review</h2>
 <p>Assumptions hold by design in an ideal randomized controlled trial. Outside of a trial they can fail:</p>
 <ul>
-<li class="fragment">Consistency, <span class="math inline">\(Y^a \neq Y\)</span> when <span class="math inline">\(A=a\)</span>: e.g., LDL cholesterol as exposure</li>
-<li class="fragment">Exchangeability, <span class="math inline">\(Y^a \not\perp A \mid L\)</span>: unmeasured confounding, i.e., common causes of treatment and the outcome</li>
-<li class="fragment">Positivity, <span class="math inline">\(P(A=a \mid L=l)=0\)</span>: No individuals with moderate baseline depression are prescribed Ketamine treatment (comparing Ketamine vs.&nbsp;SSRI).</li>
+<li class="fragment">Consistency, <span class="math inline">\(Y^a \neq Y\)</span> when <span class="math inline">\(A=a\)</span>
+<ul>
+<li class="fragment">e.g., LDL cholesterol as exposure</li>
+</ul></li>
+<li class="fragment">Exchangeability, <span class="math inline">\(Y^a \not\perp A \mid L\)</span>
+<ul>
+<li class="fragment">unmeasured confounding, i.e., common causes of treatment and the outcome</li>
+</ul></li>
+<li class="fragment">Positivity, <span class="math inline">\(P(A=a \mid L=l)=0\)</span>
+<ul>
+<li class="fragment">No individuals with moderate baseline depression are prescribed Ketamine treatment (comparing Ketamine vs.&nbsp;SSRI).</li>
+</ul></li>
 </ul>
 </section>
 <section id="review-4" class="slide level2">
@@ -265,16 +273,18 @@ P(A=a \mid L=l)&gt;0
 </section>
 <section id="review-5" class="slide level2">
 <h2>Review</h2>
-<p>Under consistency, exchangeability, positivity, AND a conditional mean outcome model, e.g.:</p>
+<p>Under consistency, exchangeability, positivity, AND <strong>a conditional mean outcome model</strong>, e.g.:</p>
 <ul>
 <li class="fragment"><span class="math inline">\(\mathbb{E}[Y \mid A=a, L=l] = \beta_0 + \beta_1a + \beta_2l+\beta_3al\)</span></li>
 <li class="fragment"><span class="math inline">\(logit(P(Y=1 \mid A=a, L=l)) = \theta_0 + \theta_1a + \theta_2l+\theta_3al\)</span></li>
 </ul>
-<p><span class="math display">\[\begin{align*}
+<p class="fragment">
+<span class="math display">\[\begin{align*}
    \mathbb{E}[Y^a]
 = &amp;\mathbb{E}\Big[\mathbb{E}[Y \mid A=a, L]\Big] \\
 = &amp;\mathbb{E}\Big[\beta_0 + \beta_1a + \beta_2L+\beta_3aL\Big]
-\end{align*}\]</span></p>
+\end{align*}\]</span>
+</p>
 </section>
 <section id="review-6" class="slide level2">
 <h2>Review</h2>
@@ -298,30 +308,43 @@ P(A=a \mid L=l)&gt;0
 </section>
 <section id="parametric-g-formula-estimator" class="slide level2 smaller">
 <h2>Parametric g-formula estimator</h2>
-<p>Parametric g-formula was historically the first estimator proposed for the g-formula parameter. But here is a puzzle: suppose we have data from a special conditionally randomized trial, where we assign patients treatment randomly conditional on a value of a continuous time-varying covariate, for example according to some function <span class="math inline">\(\pi(l)\)</span>. Suppose further that we no nothing a priori about <span class="math inline">\(\mathbb{E}[Y \mid A=a, L=l]\)</span>, e.g., we have no parametric model for <span class="math inline">\(\mathbb{E}[Y \mid A=a, L=l]\)</span>. As such, we cannot consistently estimate <span class="math inline">\(\mathbb{E}[Y \mid A=a, L=l]\)</span> or apparently the ATE…This seems strange…</p>
+<ul>
+<li class="fragment">Parametric g-formula was historically the first estimator proposed for the g-formula parameter.</li>
+<li class="fragment">But here is a puzzle
+<ul>
+<li class="fragment">suppose we have data from a special conditionally randomized trial</li>
+<li class="fragment">therein, we assign patients treatment randomly conditional on a value of a continuous covariate, for example according to some function <span class="math inline">\(\pi(l)\)</span>.</li>
+<li class="fragment">Suppose further that we no nothing a priori about <span class="math inline">\(\mathbb{E}[Y \mid A=a, L=l]\)</span>, e.g., we have no parametric model for <span class="math inline">\(\mathbb{E}[Y \mid A=a, L=l]\)</span>.</li>
+<li class="fragment">As such, we cannot consistently estimate <span class="math inline">\(\mathbb{E}[Y \mid A=a, L=l]\)</span> or apparently the ATE…This seems strange…</li>
+</ul></li>
+</ul>
 </section>
 <section id="inverse-probability-weighting" class="slide level2">
 <h2>Inverse probability weighting</h2>
 <p>How can we use the propensities? Let’s manipulate the g-formula…</p>
-<p><span class="math display">\[\begin{align*}
+<p class="fragment">
+<span class="math display">\[\begin{align*}
 = &amp; \mathbb{E}\Big[\mathbb{E}[Y \mid A=a, L]\Big] \\
 = &amp; \int_l\int_yyf(y \mid a, l) f(l) \\
-=&amp; \int_l\int_y\int_{a'}y\frac{I(a'=a)}{f(a' \mid l)}f(y \mid a', l) f(a' \mid l)f(l) \\
-=&amp; \mathbb{E}\Big[Y \frac{I(A=a)}{P(A=a \mid L)}\Big]
-  \end{align*}\]</span></p>
+=&amp; \int_l\int_y\int_{a'}y\frac{I(a'=a)}{f(a' \mid l)}f(y \mid a', l) f(a' \mid l)f(l)\end{align*}\]</span>
+</p>
+<p class="fragment">
+<span class="math display">\[= \mathbb{E}\Big[Y \frac{I(A=a)}{P(A=a \mid L)}\Big]
+  \]</span>
+</p>
 </section>
 <section id="inverse-probability-weighting-1" class="slide level2">
 <h2>Inverse probability weighting</h2>
 <p>So, under consistency, exchangeability, positivity…</p>
 <p><span class="math display">\[\begin{align*}
-\mathbb{E}[Y^a] = &amp; \mathbb{E}\Big[Y \frac{I(A=a)}{P(A=a \mid L)}\Big]= &amp; \mathbb{E}\Big[Y \frac{1}{P(A=a \mid L)} \mid A=a \Big]
+\mathbb{E}[Y^a] = &amp; \mathbb{E}\Big[Y \frac{I(A=a)}{P(A=a \mid L)}\Big]=  \mathbb{E}\Big[Y \frac{1}{P(A=a \mid L)} \mid A=a \Big]
   \end{align*}\]</span></p>
 </section>
 <section id="inverse-probability-weighting-2" class="slide level2">
 <h2>Inverse probability weighting</h2>
 <p>Returning to our motivating example:</p>
 <ul>
-<li class="fragment">“…we assign patients treatment randomly conditional on a value of a continuous time-varying covariate, for example according to some function <span class="math inline">\(\pi(l)\)</span>…”</li>
+<li class="fragment">“…we assign patients treatment randomly conditional on a value of a continuous covariate, for example according to some function <span class="math inline">\(\pi(l)\)</span>…”</li>
 <li class="fragment"><span class="math display">\[\begin{align*}
 \mathbb{E}[Y^{a=1}] = &amp; \mathbb{E}\Big[Y \frac{I(A=1)}{P(A=1 \mid L)}\Big] \\
 = &amp; \mathbb{E}\Big[Y \frac{I(A=1)}{\pi(L)}\Big]
@@ -330,22 +353,31 @@ P(A=a \mid L=l)&gt;0
 </section>
 <section id="inverse-probability-weighting-3" class="slide level2">
 <h2>Inverse probability weighting</h2>
-<p>Under consistency, exchangeability, positivity, AND a knowledge that <span class="math inline">\(P(A=1 \mid L=l) = \pi(l)\)</span>:</p>
-<p><span class="math display">\[\begin{align*}
+Under consistency, exchangeability, positivity, AND a knowledge that <span class="math inline">\(P(A=1 \mid L=l) = \pi(l)\)</span>:
+<p class="fragment">
+</p><p><span class="math display">\[\begin{align*}
   = &amp; \frac{1}{n}\sum\limits_{i=1}^nY_i\frac{I(A_i=1)}{\pi(L_i)} \\
   = &amp; \frac{1}{n}\sum\limits_{i=1}^nY_iW_i
 \end{align*}\]</span></p>
-<p>is a consistent estimator of <span class="math inline">\(\mathbb{E}[Y^{a=1}]\)</span>, where:</p>
-<p><span class="math display">\[W_i := \frac{I(A_i=1)}{\pi(L_i)}.\]</span></p>
+is a consistent estimator of <span class="math inline">\(\mathbb{E}[Y^{a=1}]\)</span>,
+<p></p>
+</section>
+<section id="inverse-probability-weighting-4" class="slide level2">
+<h2>Inverse probability weighting</h2>
+<p>Under consistency, exchangeability, positivity, AND a knowledge that <span class="math inline">\(P(A=1 \mid L=l) = \pi(l)\)</span>:</p>
+<p class="fragment">
+</p><p>I.e., <span class="math display">\[ \frac{1}{n}\sum\limits_{i=1}^nY_iW_i \to \mathbb{E}[Y^{a=1}]\]</span> where:</p>
+<span class="math display">\[W_i := \frac{I(A_i=1)}{\pi(L_i)}\]</span>
+<p></p>
 <ul>
 <li class="fragment">This is called the Horvitz-Thompson estimator.</li>
 </ul>
 </section>
-<section id="inverse-probability-weighting-4" class="slide level2">
+<section id="inverse-probability-weighting-5" class="slide level2">
 <h2>Inverse probability weighting</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>expit <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { <span class="fu">exp</span>(x) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(x)) }</span>
-<span id="cb1-2"><a></a>n<span class="ot">&lt;-</span><span class="dv">1000000</span></span>
+<span id="cb1-2"><a></a>n<span class="ot">&lt;-</span><span class="dv">1000</span></span>
 <span id="cb1-3"><a></a>beta<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</span>
 <span id="cb1-4"><a></a>eta<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>)</span>
 <span id="cb1-5"><a></a></span>
@@ -363,7 +395,7 @@ P(A=a \mid L=l)&gt;0
 <span id="cb1-17"><a></a> df1<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">L=</span>L, <span class="at">A=</span>A, <span class="at">Y1=</span>Y1, <span class="at">Y0=</span>Y0, <span class="at">Y=</span>Y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="inverse-probability-weighting-5" class="slide level2">
+<section id="inverse-probability-weighting-6" class="slide level2">
 <h2>Inverse probability weighting</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co">#Constructing weights for a=1</span></span>
@@ -373,16 +405,16 @@ P(A=a \mid L=l)&gt;0
 <span id="cb2-5"><a></a><span class="co">#Truth</span></span>
 <span id="cb2-6"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.999894</code></pre>
+<pre><code>[1] 0.9832661</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co">#Horvitz-Thompson Estimator</span></span>
 <span id="cb4-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.001922</code></pre>
+<pre><code>[1] 1.007158</code></pre>
 </div>
 </div>
 </section>
-<section id="inverse-probability-weighting-6" class="slide level2">
+<section id="inverse-probability-weighting-7" class="slide level2">
 <h2>Inverse probability weighting</h2>
 <p>Under consistency, exchangeability, positivity, AND a knowledge that <span class="math inline">\(P(A=1 \mid L=l) = \pi(l)\)</span>:</p>
 <p><span class="math display">\[\begin{align*}
@@ -393,7 +425,7 @@ P(A=a \mid L=l)&gt;0
 <li class="fragment">This is called the Hajek estimator.</li>
 </ul>
 </section>
-<section id="inverse-probability-weighting-7" class="slide level2">
+<section id="inverse-probability-weighting-8" class="slide level2">
 <h2>Inverse probability weighting</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co">#Constructing weights for a=1</span></span>
@@ -403,37 +435,39 @@ P(A=a \mid L=l)&gt;0
 <span id="cb6-5"><a></a><span class="co">#Truth</span></span>
 <span id="cb6-6"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.999894</code></pre>
+<pre><code>[1] 0.9832661</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co">#Horvitz-Thompson Estimator</span></span>
 <span id="cb8-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.001922</code></pre>
+<pre><code>[1] 1.007158</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co">#Hajek Estimator</span></span>
 <span id="cb10-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)<span class="sc">/</span><span class="fu">mean</span>(df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.999832</code></pre>
+<pre><code>[1] 0.9889273</code></pre>
 </div>
 </div>
 </section>
-<section id="inverse-probability-weighting-8" class="slide level2">
+<section id="inverse-probability-weighting-9" class="slide level2">
 <h2>Inverse probability weighting</h2>
 <p>What if we do not know the function, <span class="math inline">\(\pi(l)\)</span>, for example, if we do not have access to data from a conditionally randomized clinical trial, but rather have observational data, which we assume can be viewed as such a trial <em>run by nature</em>?</p>
 </section>
-<section id="inverse-probability-weighting-9" class="slide level2">
+<section id="inverse-probability-weighting-10" class="slide level2">
 <h2>Inverse probability weighting</h2>
 <p>Under consistency, exchangeability, positivity, AND a conditional treatment model, e.g.:</p>
 <ul>
 <li class="fragment"><span class="math inline">\(logit(P(A=1 \mid L=l)) = \eta_0 + \eta_1l\)</span></li>
 </ul>
-<p><span class="math display">\[\begin{align*}
+<p class="fragment">
+<span class="math display">\[\begin{align*}
    \mathbb{E}[Y^{a=1}]
 = &amp;\mathbb{E}\Big[Y \frac{I(A=1)}{P(A=1 \mid L)}\Big] \\
 = &amp;\mathbb{E}\Big[Y \frac{I(A=1)}{expit(\eta_0 + \eta_1L)}\Big]
-\end{align*}\]</span></p>
+\end{align*}\]</span>
+</p>
 </section>
-<section id="inverse-probability-weighting-10" class="slide level2">
+<section id="inverse-probability-weighting-11" class="slide level2">
 <h2>Inverse probability weighting</h2>
 <p>Under consistency, exchangeability, positivity, AND a conditional treatment model,</p>
 <p><span class="math display">\[\begin{align*}
@@ -447,12 +481,12 @@ P(A=a \mid L=l)&gt;0
 <p>Procedure for computing Horvitz-Thompson estimator, <span class="math inline">\(\hat{\mathbb{E}}[Y^{a}]\)</span>:</p>
 <ul>
 <li class="fragment"><strong>Step 0:</strong> Regress <span class="math inline">\(A\)</span> and <span class="math inline">\(L\)</span> in the full dataset.</li>
-<li class="fragment"><strong>Step 1:</strong> Predict the treatment for each individual using the outcome regression fit, on the scale of the outcome (e.g., probabilities for binary outcomes), <span class="math inline">\(\hat P(A=1 \mid L_i)\)</span></li>
+<li class="fragment"><strong>Step 1:</strong> Predict the treatment for each individual using the outcome regression fit, on the scale of the outcome (e.g., probabilities for binary outcomes), <span class="math inline">\(\hat P(A=1 \mid L_i)\)</span>.</li>
 <li class="fragment"><strong>Step 1:</strong> Construct weights, <span class="math inline">\(W_i=\frac{I(A_i=1)}{\hat P(A=1 \mid L_i)}\)</span> if <span class="math inline">\(a=1\)</span>, or <span class="math inline">\(W_i=\frac{I(A_i=0)}{1-\hat P(A=1 \mid L_i)}\)</span> if <span class="math inline">\(a=0\)</span>.</li>
 <li class="fragment"><strong>Step 3:</strong> Take the weighted average of the outcomes.</li>
 </ul>
 </section>
-<section id="inverse-probability-weighting-11" class="slide level2">
+<section id="inverse-probability-weighting-12" class="slide level2">
 <h2>Inverse probability weighting</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co">#Constructing weights for a=1</span></span>
@@ -463,19 +497,210 @@ P(A=a \mid L=l)&gt;0
 <span id="cb12-6"><a></a><span class="co">#Truth</span></span>
 <span id="cb12-7"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.999894</code></pre>
+<pre><code>[1] 0.9832661</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co">#Horvitz-Thompson Estimator</span></span>
 <span id="cb14-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9998143</code></pre>
+<pre><code>[1] 0.9918352</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co">#Hajek Estimator</span></span>
 <span id="cb16-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)<span class="sc">/</span><span class="fu">mean</span>(df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9998267</code></pre>
+<pre><code>[1] 0.9920483</code></pre>
 </div>
 </div>
+</section>
+<section id="inverse-probability-weighting-13" class="slide level2">
+<h2>Inverse probability weighting</h2>
+<p>Returning to our motivating example:</p>
+<ul>
+<li class="fragment"><p>“…we assign patients treatment randomly conditional on a value of a continuous covariate, for example according to some function <span class="math inline">\(\pi(l)\)</span>…”</p></li>
+<li class="fragment"><p>Suppose <span class="math inline">\(\pi(l) = expit(\eta_0 + \eta_1L)\)</span>.</p></li>
+<li class="fragment"><p>Consider:</p>
+<ul>
+<li class="fragment"><span class="math inline">\(W^{true} = \frac{I(A=1)}{expit(\eta_0 + \eta_1L)}\)</span></li>
+<li class="fragment"><span class="math inline">\(W^{est} = \frac{I(A=1)}{expit(\hat{\eta}_0 + \hat{\eta}_1L)}\)</span></li>
+</ul></li>
+<li class="fragment"><p>Which weights should we use?</p></li>
+</ul>
+</section>
+<section id="evaluating-the-positivity-assumption" class="slide level2">
+<h2>Evaluating the positivity assumption</h2>
+<div class="definition" data-title="(Conditional) Positivity">
+<p>(Conditional) positivity for treatment <span class="math inline">\(A\)</span> with respect to an outcome <span class="math inline">\(Y\)</span> is the following property: <span class="math display">\[\begin{aligned}
+P(A=a \mid L=l)&gt;0
+\end{aligned}\]</span> for all <span class="math inline">\(a\)</span>, and for all <span class="math inline">\(l\)</span> such that <span class="math inline">\(P(L=l)&gt;0\)</span></p>
+</div>
+</section>
+<section id="evaluating-the-positivity-assumption-1" class="slide level2">
+<h2>Evaluating the positivity assumption</h2>
+<p>Equivalent definitions of (Conditional) Positivity:</p>
+<ul>
+<li class="fragment">Letting <span class="math inline">\(\pi(L) := P(A=1 \mid L)\)</span>…
+<ul>
+<li class="fragment"><span class="math inline">\(P(0&lt;\pi(L)&lt;1) = 1\)</span>
+<ul>
+<li class="fragment">Interpretation: the propensity is <strong>never</strong> 0 or 1 for any level of covariates that can occur in the population.</li>
+</ul></li>
+<li class="fragment"><span class="math inline">\(f(\pi(L) \mid A=1)&gt;0 \iff f(\pi(L) \mid A=0)&gt;0\)</span></li>
+<li class="fragment">Interpretation: There must be “overlap” in the propensity score distributions between treated and control populations.</li>
+</ul></li>
+</ul>
+</section>
+<section id="evaluating-the-positivity-assumption-2" class="slide level2">
+<h2>Evaluating the positivity assumption</h2>
+<p>Assessing “overlap”, <span class="math inline">\(f(\pi(L) \mid A=1)&gt;0 \iff f(\pi(L) \mid A=0)&gt;0\)</span></p>
+
+<img data-src="unit2-lect4_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="evaluating-the-positivity-assumption-3" class="slide level2">
+<h2>Evaluating the positivity assumption</h2>
+<p>Changing the treatment mechanism…</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb18-2"><a></a>beta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</span>
+<span id="cb18-3"><a></a></span>
+<span id="cb18-4"><a></a>eta2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4</span>)</span>
+<span id="cb18-5"><a></a></span>
+<span id="cb18-6"><a></a>U_L <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb18-7"><a></a>U_A <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb18-8"><a></a>U_Y1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb18-9"><a></a>U_Y0 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb18-10"><a></a></span>
+<span id="cb18-11"><a></a>L  <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(U_L, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb18-12"><a></a></span>
+<span id="cb18-13"><a></a>A2 <span class="ot">&lt;-</span> <span class="fu">qbinom</span>(U_A, <span class="dv">1</span>, <span class="fu">expit</span>(eta2[<span class="dv">1</span>] <span class="sc">+</span> eta2[<span class="dv">2</span>]<span class="sc">*</span>L))</span>
+<span id="cb18-14"><a></a></span>
+<span id="cb18-15"><a></a>Y1 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(U_Y1, beta[<span class="dv">1</span>] <span class="sc">+</span> beta[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> beta[<span class="dv">3</span>]<span class="sc">*</span>L, <span class="dv">1</span>)</span>
+<span id="cb18-16"><a></a>Y0 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(U_Y0, beta[<span class="dv">1</span>] <span class="sc">+</span> beta[<span class="dv">2</span>]<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> beta[<span class="dv">3</span>]<span class="sc">*</span>L, <span class="dv">1</span>)</span>
+<span id="cb18-17"><a></a></span>
+<span id="cb18-18"><a></a>Y2 <span class="ot">&lt;-</span> Y1<span class="sc">*</span>A2 <span class="sc">+</span> Y0<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>A2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="evaluating-the-positivity-assumption-4" class="slide level2">
+<h2>Evaluating the positivity assumption</h2>
+<p>Changing the treatment mechanism…</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">L=</span>L, <span class="at">A=</span>A2, <span class="at">Y1=</span>Y1, <span class="at">Y0=</span>Y0, <span class="at">Y=</span>Y2)</span>
+<span id="cb19-2"><a></a></span>
+<span id="cb19-3"><a></a>fit2<span class="ot">&lt;-</span><span class="fu">glm</span>(A<span class="sc">~</span>L, <span class="at">data=</span>df2, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span>logit))</span>
+<span id="cb19-4"><a></a>df2<span class="sc">$</span>pi<span class="ot">&lt;-</span><span class="fu">predict</span>(fit2, df2, <span class="at">type=</span><span class="st">"response"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="evaluating-the-positivity-assumption-5" class="slide level2">
+<h2>Evaluating the positivity assumption</h2>
+<p>Assessing “overlap”, <span class="math inline">\(f(\pi(L) \mid A=1)&gt;0 \iff f(\pi(L) \mid A=0)&gt;0\)</span></p>
+
+<img data-src="unit2-lect4_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<section id="what-to-do-when-there-are-positivity-violations" class="slide level2">
+<h2>What to do when there are positivity violations?</h2>
+<p>When <span class="math inline">\(P(A=a \mid L=l)=0\)</span> for some levels <span class="math inline">\(l\)</span>, the IPW estimator</p>
+<p><span class="math display">\[\sum\limits_{i=1}^nY_i\frac{I(A_i=a)}{\hat{P}(A=a \mid L_i)}\]</span> is not consistent for <span class="math inline">\(\mathbb{E}[Y^a]\)</span>.</p>
+<p>Rather it is consistent for <span class="math display">\[\mathbb{E}\Big[Y^a \mid L \in \{l \ s.t. P(A=a \mid L=l)&gt;0\}\Big]\]</span></p>
+</section>
+<section id="what-to-do-when-there-are-positivity-violations-1" class="slide level2">
+<h2>What to do when there are positivity violations?</h2>
+<p>As such: <span class="math display">\[\Bigg\{\sum\limits_{i=1}^nY_i\frac{I(A_i=1)}{\hat{P}(A=1 \mid L_i)}\Bigg\} - \Bigg\{\sum\limits_{i=1}^nY_i\frac{I(A_i=0)}{\hat{P}(A=0 \mid L_i)}\Bigg\}\]</span> is not consistent for <span class="math inline">\(\mathbb{E}[Y^{a=1}] - \mathbb{E}[Y^{a=0}]\)</span>.</p>
+</section>
+<section id="what-to-do-when-there-are-positivity-violations-2" class="slide level2">
+<h2>What to do when there are positivity violations?</h2>
+<p>Instead it is consistent for <span class="math display">\[\begin{align} &amp; \mathbb{E}\Big[Y^{a=1} \mid L \in \{l \ s.t. P(A=1 \mid L=l)&gt;0\}\Big] \\ - &amp; \mathbb{E}\Big[Y^{a=0} \mid L \in \{l \ s.t. P(A=0 \mid L=l)&gt;0\}\Big]\end{align}\]</span></p>
+<p>The subpopulations are different, so it is not even a causal effect of any kind!</p>
+</section>
+<section id="what-to-do-when-there-are-apparent-positivity-violations" class="slide level2">
+<h2>What to do when there are (apparent) positivity violations?</h2>
+<p>Option 1: the parametric g-formula</p>
+<ul>
+<li class="fragment">Recall: Positivity ensures the g-formula is well-defined, e.g., <span class="math display">\[\mathbb{E}\Big[\mathbb{E}[Y \mid A=1, L]\Big]\]</span></li>
+<li class="fragment">Suppose <span class="math inline">\(P(A=1 \mid L=1)=0\)</span>, binary <span class="math inline">\(L\)</span>.</li>
+<li class="fragment"><span class="math display">\[\begin{align}&amp;\mathbb{E}\Big[\mathbb{E}[Y \mid A=1, L]\Big] \\ = &amp; \mathbb{E}[Y \mid A=1, L=1]P(L=1) + \mathbb{E}[Y \mid A=1, L=0]P(L=0)\end{align}\]</span></li>
+<li class="fragment"><span class="math inline">\(\mathbb{E}[Y \mid A=1, L=1]\)</span> is the problematic term.</li>
+</ul>
+</section>
+<section id="what-to-do-when-there-are-apparent-positivity-violations-1" class="slide level2">
+<h2>What to do when there are (apparent) positivity violations?</h2>
+<p>Option 1: the parametric g-formula</p>
+<ul>
+<li class="fragment">Suppose we assume <span class="math inline">\(\mathbb{E}[Y \mid A, L] = \beta_0 + \beta_1A + \beta_2L\)</span>.</li>
+<li class="fragment">Consider: <span class="math display">\[\begin{align} \mathbb{E}[Y \mid A=1, L=1] = \beta_0 + \beta_1 + \beta_2
+\end{align}\]</span></li>
+<li class="fragment"><span class="math inline">\(\beta_0 = \mathbb{E}[Y \mid A=0, L=0]\)</span></li>
+<li class="fragment"><span class="math inline">\(\beta_1 = \mathbb{E}[Y \mid A=1, L=l] - \mathbb{E}[Y \mid A=0, L=l]\)</span></li>
+<li class="fragment"><span class="math inline">\(\beta_2 = \mathbb{E}[Y \mid A=a, L=1] - \mathbb{E}[Y \mid A=a, L=0]\)</span></li>
+</ul>
+</section>
+<section id="what-to-do-when-there-are-apparent-positivity-violations-2" class="slide level2">
+<h2>What to do when there are (apparent) positivity violations?</h2>
+<p>Option 1: the parametric g-formula</p>
+<ul>
+<li class="fragment">Suppose we assume <span class="math inline">\(\mathbb{E}[Y \mid A, L] = \beta_0 + \beta_1A + \beta_2L\)</span>.</li>
+<li class="fragment">Consider: <span class="math display">\[\begin{align} \mathbb{E}[Y \mid A=1, L=1] = \beta_0 + \beta_1 + \beta_2
+\end{align}\]</span></li>
+<li class="fragment"><span class="math inline">\(\beta_0 = \mathbb{E}[Y \mid A=0, L=0]\)</span></li>
+<li class="fragment"><span class="math inline">\(\beta_1 = \mathbb{E}[Y \mid A=1, L=0] - \mathbb{E}[Y \mid A=0, L=0]\)</span></li>
+<li class="fragment"><span class="math inline">\(\beta_2 = \mathbb{E}[Y \mid A=0, L=1] - \mathbb{E}[Y \mid A=0, L=0]\)</span></li>
+<li class="fragment">Warning: We rely on potential wrong modelling assumptions.</li>
+</ul>
+</section>
+<section id="what-to-do-when-there-are-apparent-positivity-violations-3" class="slide level2">
+<h2>What to do when there are (apparent) positivity violations?</h2>
+<p>Option 2: Change the estimand</p>
+<ul>
+<li class="fragment">Originally we wanted <span class="math inline">\(\mathbb{E}[Y^{a=1}] - \mathbb{E}[Y^{a=0}]\)</span>.
+<ul>
+<li class="fragment">This requires <span class="math inline">\(P(A=a \mid L=l)&gt;1\)</span> for all <span class="math inline">\(l\)</span> with positive probability in the target population.</li>
+</ul></li>
+<li class="fragment">Suppose instead we wanted <span class="math inline">\(\mathbb{E}[Y^{a=1} \mid L=l'] - \mathbb{E}[Y^{a=0}\mid L=l']\)</span>.
+<ul>
+<li class="fragment"><span class="math inline">\(\mathbb{E}[Y^{a} \mid L=l'] = \mathbb{E}[Y \mid A=a, L=l']\)</span></li>
+<li class="fragment">This only requires <span class="math inline">\(P(A=a \mid L=l')&gt;1\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-to-do-when-there-are-apparent-positivity-violations-4" class="slide level2">
+<h2>What to do when there are (apparent) positivity violations?</h2>
+<p>Option 2: Change the estimand</p>
+<ul>
+<li class="fragment">Suppose instead we wanted a <span class="math inline">\(\mathbb{E}[Y^{a=1} \mid X=x] - \mathbb{E}[Y^{a=0}\mid X=x]\)</span>.
+<ul>
+<li class="fragment"><span class="math inline">\(\mathbb{E}[Y^{a} \mid X=x] = \mathbb{E}\Big[\mathbb{E}[Y \mid A=a, L] \Big | X=x\Big]\)</span></li>
+<li class="fragment">This only requires <span class="math inline">\(P(A=a \mid L=l)&gt;1\)</span> for all <span class="math inline">\(l\)</span> with positive probability in the <em>subpopulation</em> with <span class="math inline">\(X=x\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-to-do-when-there-are-apparent-positivity-violations-5" class="slide level2">
+<h2>What to do when there are (apparent) positivity violations?</h2>
+<p>Option 2: Change the estimand</p>
+<ul>
+<li class="fragment">Exclude the population you know has probability <span class="math inline">\(0\)</span> of receiving one of the treatment levels, e.g.,
+<ul>
+<li class="fragment"><span class="math inline">\(L=(L_1, L_2)\)</span>, exclude people with <span class="math inline">\(L_2=0\)</span>, moderate depression (ketamine vs.&nbsp;SSRI)</li>
+<li class="fragment"><span class="math inline">\(\mathbb{E}[Y^{a} \mid L_2\neq 0] = \mathbb{E}\Big[\mathbb{E}[Y \mid A=a, L_1, L_2] \Big |  L_2\neq 0\Big]\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="what-to-do-when-there-are-apparent-positivity-violations-6" class="slide level2">
+<h2>What to do when there are (apparent) positivity violations?</h2>
+<p>Option 2: Change the estimand</p>
+<ul>
+<li class="fragment">Restrict to the “overlap population”
+<ul>
+<li class="fragment">Only levels of <span class="math inline">\(L\)</span> such that <span class="math inline">\(\epsilon&lt;P(A=1 \mid L=l)&lt;1-\epsilon\)</span></li>
+<li class="fragment"><span class="math inline">\(\mathbb{E}\Big[Y^{a} \Big |  L \in \{l \ s.t. \epsilon&lt;P(A=a \mid L=l)&lt;1-\epsilon\}\Big]\)</span> for <span class="math inline">\(0&lt;\epsilon&gt;1\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="what-to-do-when-there-are-apparent-positivity-violations-7" class="slide level2">
+<h2>What to do when there are (apparent) positivity violations?</h2>
+
+<img data-src="unit2-lect4_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<section id="what-to-do-when-there-are-apparent-positivity-violations-8" class="slide level2">
+<h2>What to do when there are (apparent) positivity violations?</h2>
+
+<img data-src="unit2-lect4_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<section id="what-to-do-when-there-are-apparent-positivity-violations-9" class="slide level2">
+<h2>What to do when there are (apparent) positivity violations?</h2>
+<p>Warning: we need to be really careful when we change the estimand! Are we really interested in this subpopulation? What is the policy relavence? Beware of easy fixes - there is no free lunch…</p>
 
 
 </section></section>
