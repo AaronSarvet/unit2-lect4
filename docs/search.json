@@ -109,7 +109,7 @@
     "href": "unit2-lect4.html#inverse-probability-weighting-6",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\ndf1$pi&lt;-expit(eta[1] + eta[2]*df1$L)\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 1.015956\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.031781"
+    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\ndf1$pi&lt;-expit(eta[1] + eta[2]*df1$L)\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 1.01102\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.04043"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-7",
@@ -123,7 +123,7 @@
     "href": "unit2-lect4.html#inverse-probability-weighting-8",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\ndf1$pi&lt;-expit(eta[1] + eta[2]*df1$L)\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 1.015956\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.031781\n\n#Hajek Estimator\nmean(df1$Y*df1$W)/mean(df1$W)\n\n[1] 0.9995465"
+    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\ndf1$pi&lt;-expit(eta[1] + eta[2]*df1$L)\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 1.01102\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.04043\n\n#Hajek Estimator\nmean(df1$Y*df1$W)/mean(df1$W)\n\n[1] 0.9847329"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-9",
@@ -151,7 +151,7 @@
     "href": "unit2-lect4.html#inverse-probability-weighting-12",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\nfit&lt;-glm(A~L, data=df1, family=binomial(link=logit))\ndf1$pi&lt;-predict(fit, df1, type=\"response\")\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 1.015956\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 0.9830018\n\n#Hajek Estimator\nmean(df1$Y*df1$W)/mean(df1$W)\n\n[1] 0.9825212"
+    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\nfit&lt;-glm(A~L, data=df1, family=binomial(link=logit))\ndf1$pi&lt;-predict(fit, df1, type=\"response\")\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 1.01102\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.012212\n\n#Hajek Estimator\nmean(df1$Y*df1$W)/mean(df1$W)\n\n[1] 1.012224"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-13",
