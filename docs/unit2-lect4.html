@@ -405,12 +405,12 @@ is a consistent estimator of <span class="math inline">\(\mathbb{E}[Y^{a=1}]\)</
 <span id="cb2-5"><a></a><span class="co">#Truth</span></span>
 <span id="cb2-6"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9832661</code></pre>
+<pre><code>[1] 1.015956</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co">#Horvitz-Thompson Estimator</span></span>
 <span id="cb4-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.007158</code></pre>
+<pre><code>[1] 1.031781</code></pre>
 </div>
 </div>
 </section>
@@ -420,7 +420,7 @@ is a consistent estimator of <span class="math inline">\(\mathbb{E}[Y^{a=1}]\)</
 <p><span class="math display">\[\begin{align*}
   = &amp; \frac{\frac{1}{n}\sum\limits_{i=1}^nY_i\frac{I(A_i=1)}{\pi(L_i)}}{\frac{1}{n}\sum\limits_{i=1}^n\frac{I(A_i=1)}{\pi(L_i)}}
 \end{align*}\]</span></p>
-<p>is a consistent estimator estimator of <span class="math inline">\(\mathbb{E}[Y^{a=1}]\)</span>.</p>
+<p>is a consistent estimator of <span class="math inline">\(\mathbb{E}[Y^{a=1}]\)</span>.</p>
 <ul>
 <li class="fragment">This is called the Hajek estimator.</li>
 </ul>
@@ -435,17 +435,17 @@ is a consistent estimator of <span class="math inline">\(\mathbb{E}[Y^{a=1}]\)</
 <span id="cb6-5"><a></a><span class="co">#Truth</span></span>
 <span id="cb6-6"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9832661</code></pre>
+<pre><code>[1] 1.015956</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co">#Horvitz-Thompson Estimator</span></span>
 <span id="cb8-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.007158</code></pre>
+<pre><code>[1] 1.031781</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co">#Hajek Estimator</span></span>
 <span id="cb10-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)<span class="sc">/</span><span class="fu">mean</span>(df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9889273</code></pre>
+<pre><code>[1] 0.9995465</code></pre>
 </div>
 </div>
 </section>
@@ -497,17 +497,17 @@ is a consistent estimator of <span class="math inline">\(\mathbb{E}[Y^{a=1}]\)</
 <span id="cb12-6"><a></a><span class="co">#Truth</span></span>
 <span id="cb12-7"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9832661</code></pre>
+<pre><code>[1] 1.015956</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co">#Horvitz-Thompson Estimator</span></span>
 <span id="cb14-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9918352</code></pre>
+<pre><code>[1] 0.9830018</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co">#Hajek Estimator</span></span>
 <span id="cb16-2"><a></a><span class="fu">mean</span>(df1<span class="sc">$</span>Y<span class="sc">*</span>df1<span class="sc">$</span>W)<span class="sc">/</span><span class="fu">mean</span>(df1<span class="sc">$</span>W)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9920483</code></pre>
+<pre><code>[1] 0.9825212</code></pre>
 </div>
 </div>
 </section>
@@ -653,7 +653,7 @@ P(A=a \mid L=l)&gt;0
 <li class="fragment">Suppose instead we wanted <span class="math inline">\(\mathbb{E}[Y^{a=1} \mid L=l'] - \mathbb{E}[Y^{a=0}\mid L=l']\)</span>.
 <ul>
 <li class="fragment"><span class="math inline">\(\mathbb{E}[Y^{a} \mid L=l'] = \mathbb{E}[Y \mid A=a, L=l']\)</span></li>
-<li class="fragment">This only requires <span class="math inline">\(P(A=a \mid L=l')&gt;1\)</span>.</li>
+<li class="fragment">This only requires <span class="math inline">\(P(A=a \mid L=l')&gt;0\)</span>.</li>
 </ul></li>
 </ul>
 </section>
@@ -664,7 +664,7 @@ P(A=a \mid L=l)&gt;0
 <li class="fragment">Suppose instead we wanted a <span class="math inline">\(\mathbb{E}[Y^{a=1} \mid X=x] - \mathbb{E}[Y^{a=0}\mid X=x]\)</span>.
 <ul>
 <li class="fragment"><span class="math inline">\(\mathbb{E}[Y^{a} \mid X=x] = \mathbb{E}\Big[\mathbb{E}[Y \mid A=a, L] \Big | X=x\Big]\)</span></li>
-<li class="fragment">This only requires <span class="math inline">\(P(A=a \mid L=l)&gt;1\)</span> for all <span class="math inline">\(l\)</span> with positive probability in the <em>subpopulation</em> with <span class="math inline">\(X=x\)</span>.</li>
+<li class="fragment">This only requires <span class="math inline">\(P(A=a \mid L=l)&gt;0\)</span> for all <span class="math inline">\(l\)</span> with positive probability in the <em>subpopulation</em> with <span class="math inline">\(X=x\)</span>.</li>
 </ul></li>
 </ul>
 </section>
@@ -686,7 +686,7 @@ P(A=a \mid L=l)&gt;0
 <li class="fragment">Restrict to the “overlap population”
 <ul>
 <li class="fragment">Only levels of <span class="math inline">\(L\)</span> such that <span class="math inline">\(\epsilon&lt;P(A=1 \mid L=l)&lt;1-\epsilon\)</span></li>
-<li class="fragment"><span class="math inline">\(\mathbb{E}\Big[Y^{a} \Big |  L \in \{l \ s.t. \epsilon&lt;P(A=a \mid L=l)&lt;1-\epsilon\}\Big]\)</span> for <span class="math inline">\(0&lt;\epsilon&gt;1\)</span>.</li>
+<li class="fragment"><span class="math inline">\(\mathbb{E}\Big[Y^{a} \Big |  L \in \{l \ s.t. \epsilon&lt;P(A=a \mid L=l)&lt;1-\epsilon\}\Big]\)</span> for <span class="math inline">\(0&lt;\epsilon&lt;1\)</span>.</li>
 </ul></li>
 </ul>
 </section>

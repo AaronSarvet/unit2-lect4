@@ -109,21 +109,21 @@
     "href": "unit2-lect4.html#inverse-probability-weighting-6",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\ndf1$pi&lt;-expit(eta[1] + eta[2]*df1$L)\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 0.9832661\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.007158"
+    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\ndf1$pi&lt;-expit(eta[1] + eta[2]*df1$L)\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 1.015956\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.031781"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-7",
     "href": "unit2-lect4.html#inverse-probability-weighting-7",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\nUnder consistency, exchangeability, positivity, AND a knowledge that \\(P(A=1 \\mid L=l) = \\pi(l)\\):\n\\[\\begin{align*}\n  = & \\frac{\\frac{1}{n}\\sum\\limits_{i=1}^nY_i\\frac{I(A_i=1)}{\\pi(L_i)}}{\\frac{1}{n}\\sum\\limits_{i=1}^n\\frac{I(A_i=1)}{\\pi(L_i)}}\n\\end{align*}\\]\nis a consistent estimator estimator of \\(\\mathbb{E}[Y^{a=1}]\\).\n\nThis is called the Hajek estimator."
+    "text": "Inverse probability weighting\nUnder consistency, exchangeability, positivity, AND a knowledge that \\(P(A=1 \\mid L=l) = \\pi(l)\\):\n\\[\\begin{align*}\n  = & \\frac{\\frac{1}{n}\\sum\\limits_{i=1}^nY_i\\frac{I(A_i=1)}{\\pi(L_i)}}{\\frac{1}{n}\\sum\\limits_{i=1}^n\\frac{I(A_i=1)}{\\pi(L_i)}}\n\\end{align*}\\]\nis a consistent estimator of \\(\\mathbb{E}[Y^{a=1}]\\).\n\nThis is called the Hajek estimator."
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-8",
     "href": "unit2-lect4.html#inverse-probability-weighting-8",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\ndf1$pi&lt;-expit(eta[1] + eta[2]*df1$L)\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 0.9832661\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.007158\n\n#Hajek Estimator\nmean(df1$Y*df1$W)/mean(df1$W)\n\n[1] 0.9889273"
+    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\ndf1$pi&lt;-expit(eta[1] + eta[2]*df1$L)\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 1.015956\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 1.031781\n\n#Hajek Estimator\nmean(df1$Y*df1$W)/mean(df1$W)\n\n[1] 0.9995465"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-9",
@@ -151,7 +151,7 @@
     "href": "unit2-lect4.html#inverse-probability-weighting-12",
     "title": "Inverse Probability Weighting",
     "section": "Inverse probability weighting",
-    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\nfit&lt;-glm(A~L, data=df1, family=binomial(link=logit))\ndf1$pi&lt;-predict(fit, df1, type=\"response\")\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 0.9832661\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 0.9918352\n\n#Hajek Estimator\nmean(df1$Y*df1$W)/mean(df1$W)\n\n[1] 0.9920483"
+    "text": "Inverse probability weighting\n\n#Constructing weights for a=1\nfit&lt;-glm(A~L, data=df1, family=binomial(link=logit))\ndf1$pi&lt;-predict(fit, df1, type=\"response\")\ndf1$W&lt;-df1$A/df1$pi\n\n#Truth\nmean(df1$Y1)\n\n[1] 1.015956\n\n#Horvitz-Thompson Estimator\nmean(df1$Y*df1$W)\n\n[1] 0.9830018\n\n#Hajek Estimator\nmean(df1$Y*df1$W)/mean(df1$W)\n\n[1] 0.9825212"
   },
   {
     "objectID": "unit2-lect4.html#inverse-probability-weighting-13",
@@ -249,14 +249,14 @@
     "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-3",
     "title": "Inverse Probability Weighting",
     "section": "What to do when there are (apparent) positivity violations?",
-    "text": "What to do when there are (apparent) positivity violations?\nOption 2: Change the estimand\n\nOriginally we wanted \\(\\mathbb{E}[Y^{a=1}] - \\mathbb{E}[Y^{a=0}]\\).\n\nThis requires \\(P(A=a \\mid L=l)&gt;1\\) for all \\(l\\) with positive probability in the target population.\n\nSuppose instead we wanted \\(\\mathbb{E}[Y^{a=1} \\mid L=l'] - \\mathbb{E}[Y^{a=0}\\mid L=l']\\).\n\n\\(\\mathbb{E}[Y^{a} \\mid L=l'] = \\mathbb{E}[Y \\mid A=a, L=l']\\)\nThis only requires \\(P(A=a \\mid L=l')&gt;1\\)."
+    "text": "What to do when there are (apparent) positivity violations?\nOption 2: Change the estimand\n\nOriginally we wanted \\(\\mathbb{E}[Y^{a=1}] - \\mathbb{E}[Y^{a=0}]\\).\n\nThis requires \\(P(A=a \\mid L=l)&gt;1\\) for all \\(l\\) with positive probability in the target population.\n\nSuppose instead we wanted \\(\\mathbb{E}[Y^{a=1} \\mid L=l'] - \\mathbb{E}[Y^{a=0}\\mid L=l']\\).\n\n\\(\\mathbb{E}[Y^{a} \\mid L=l'] = \\mathbb{E}[Y \\mid A=a, L=l']\\)\nThis only requires \\(P(A=a \\mid L=l')&gt;0\\)."
   },
   {
     "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-4",
     "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-4",
     "title": "Inverse Probability Weighting",
     "section": "What to do when there are (apparent) positivity violations?",
-    "text": "What to do when there are (apparent) positivity violations?\nOption 2: Change the estimand\n\nSuppose instead we wanted a \\(\\mathbb{E}[Y^{a=1} \\mid X=x] - \\mathbb{E}[Y^{a=0}\\mid X=x]\\).\n\n\\(\\mathbb{E}[Y^{a} \\mid X=x] = \\mathbb{E}\\Big[\\mathbb{E}[Y \\mid A=a, L] \\Big | X=x\\Big]\\)\nThis only requires \\(P(A=a \\mid L=l)&gt;1\\) for all \\(l\\) with positive probability in the subpopulation with \\(X=x\\)."
+    "text": "What to do when there are (apparent) positivity violations?\nOption 2: Change the estimand\n\nSuppose instead we wanted a \\(\\mathbb{E}[Y^{a=1} \\mid X=x] - \\mathbb{E}[Y^{a=0}\\mid X=x]\\).\n\n\\(\\mathbb{E}[Y^{a} \\mid X=x] = \\mathbb{E}\\Big[\\mathbb{E}[Y \\mid A=a, L] \\Big | X=x\\Big]\\)\nThis only requires \\(P(A=a \\mid L=l)&gt;0\\) for all \\(l\\) with positive probability in the subpopulation with \\(X=x\\)."
   },
   {
     "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-5",
@@ -270,7 +270,7 @@
     "href": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-6",
     "title": "Inverse Probability Weighting",
     "section": "What to do when there are (apparent) positivity violations?",
-    "text": "What to do when there are (apparent) positivity violations?\nOption 2: Change the estimand\n\nRestrict to the “overlap population”\n\nOnly levels of \\(L\\) such that \\(\\epsilon&lt;P(A=1 \\mid L=l)&lt;1-\\epsilon\\)\n\\(\\mathbb{E}\\Big[Y^{a} \\Big |  L \\in \\{l \\ s.t. \\epsilon&lt;P(A=a \\mid L=l)&lt;1-\\epsilon\\}\\Big]\\) for \\(0&lt;\\epsilon&gt;1\\)."
+    "text": "What to do when there are (apparent) positivity violations?\nOption 2: Change the estimand\n\nRestrict to the “overlap population”\n\nOnly levels of \\(L\\) such that \\(\\epsilon&lt;P(A=1 \\mid L=l)&lt;1-\\epsilon\\)\n\\(\\mathbb{E}\\Big[Y^{a} \\Big |  L \\in \\{l \\ s.t. \\epsilon&lt;P(A=a \\mid L=l)&lt;1-\\epsilon\\}\\Big]\\) for \\(0&lt;\\epsilon&lt;1\\)."
   },
   {
     "objectID": "unit2-lect4.html#what-to-do-when-there-are-apparent-positivity-violations-7",

@@ -246,7 +246,7 @@ $$\begin{align*}
   = & \frac{\frac{1}{n}\sum\limits_{i=1}^nY_i\frac{I(A_i=1)}{\pi(L_i)}}{\frac{1}{n}\sum\limits_{i=1}^n\frac{I(A_i=1)}{\pi(L_i)}}
 \end{align*}$$
 
-is a consistent estimator estimator of $\mathbb{E}[Y^{a=1}]$.
+is a consistent estimator of $\mathbb{E}[Y^{a=1}]$.
 
 - This is called the Hajek estimator.
 
@@ -507,7 +507,7 @@ Option 2: Change the estimand
   - This requires $P(A=a \mid L=l)>1$ for all $l$ with positive probability in the target population.
 - Suppose instead we wanted $\mathbb{E}[Y^{a=1} \mid L=l'] - \mathbb{E}[Y^{a=0}\mid L=l']$.
   - $\mathbb{E}[Y^{a} \mid L=l'] = \mathbb{E}[Y \mid A=a, L=l']$
-  - This only requires $P(A=a \mid L=l')>1$.
+  - This only requires $P(A=a \mid L=l')>0$.
 
 ## What to do when there are (apparent) positivity violations?
 
@@ -515,7 +515,7 @@ Option 2: Change the estimand
 
 - Suppose instead we wanted a $\mathbb{E}[Y^{a=1} \mid X=x] - \mathbb{E}[Y^{a=0}\mid X=x]$. 
   - $\mathbb{E}[Y^{a} \mid X=x] = \mathbb{E}\Big[\mathbb{E}[Y \mid A=a, L] \Big | X=x\Big]$
-  - This only requires $P(A=a \mid L=l)>1$ for all $l$ with positive probability in the *subpopulation* with $X=x$.
+  - This only requires $P(A=a \mid L=l)>0$ for all $l$ with positive probability in the *subpopulation* with $X=x$.
   
 ## What to do when there are (apparent) positivity violations?  
 
@@ -531,7 +531,7 @@ Option 2: Change the estimand
 
 - Restrict to the "overlap population"
   - Only levels of $L$ such that $\epsilon<P(A=1 \mid L=l)<1-\epsilon$
-  - $\mathbb{E}\Big[Y^{a} \Big |  L \in \{l \ s.t. \epsilon<P(A=a \mid L=l)<1-\epsilon\}\Big]$ for $0<\epsilon>1$.
+  - $\mathbb{E}\Big[Y^{a} \Big |  L \in \{l \ s.t. \epsilon<P(A=a \mid L=l)<1-\epsilon\}\Big]$ for $0<\epsilon<1$.
   
   
 ## What to do when there are (apparent) positivity violations?  
